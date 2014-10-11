@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="bower_components/context-free-parser"/>
+	<classpathentry kind="src" path="bower_components/core-ajax/tests/js"/>
+	<classpathentry kind="src" path="bower_components/core-collapse/tests/js"/>
+	<classpathentry kind="src" path="bower_components/core-localstorage/tests/js"/>
+	<classpathentry excluding="tests/js/" kind="src" path="bower_components/core-overlay"/>
+	<classpathentry kind="src" path="bower_components/core-overlay/tests/js"/>
+	<classpathentry kind="src" path="bower_components/core-selection/tests/js"/>
+	<classpathentry kind="src" path="bower_components/core-selector"/>
+	<classpathentry kind="src" path="bower_components/core-shared-lib/tests/js"/>
+	<classpathentry kind="src" path="bower_components/google-code-prettify/bin"/>
+	<classpathentry kind="src" path="bower_components/google-code-prettify/src"/>
+	<classpathentry excluding="lib/|test/browser/|test/" kind="src" path="bower_components/marked"/>
+	<classpathentry kind="src" path="bower_components/marked/lib"/>
+	<classpathentry excluding="browser/" kind="src" path="bower_components/marked/test"/>
+	<classpathentry kind="src" path="bower_components/marked/test/browser"/>
+	<classpathentry kind="src" path="bower_components/paper-ripple/tests/js"/>
+	<classpathentry kind="src" path="bower_components/platform"/>
+	<classpathentry kind="src" path="bower_components/polymer"/>
+	<classpathentry excluding="mocha/|chai/" kind="src" path="bower_components/polymer-test-tools"/>
+	<classpathentry kind="src" path="bower_components/polymer-test-tools/chai"/>
+	<classpathentry kind="src" path="bower_components/polymer-test-tools/mocha"/>
+	<classpathentry excluding="test/perf/|test/|tutorial/|test/testcases/" kind="src" path="bower_components/web-animations-js"/>
+	<classpathentry excluding="perf/|testcases/" kind="src" path="bower_components/web-animations-js/test"/>
+	<classpathentry kind="src" path="bower_components/web-animations-js/test/perf"/>
+	<classpathentry kind="src" path="bower_components/web-animations-js/test/testcases"/>
+	<classpathentry kind="src" path="bower_components/web-animations-js/tutorial"/>
+	<classpathentry kind="src" path="scripts"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

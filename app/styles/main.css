@@ -9,6 +9,25 @@ body {
     height: 85px;
     padding: 10px;
 }
+.toolbar > img {
+  margin-top: 20px;
+}
+core-scaffold::shadow core-toolbar {
+    background: #2a82f2;
+    height: 85px;
+}
+core-scaffold::shadow core-toolbar core-icon-button {
+  margin-top: 50px;
+}
+core-header-panel {
+  background: #5a616a;
+  color: white;
+}
+#topbar {
+    background: #2a82f2;
+    height: 85px;
+    padding: 10px;
+}
 #events {
     text-align: center;
 }

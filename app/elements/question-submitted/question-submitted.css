@@ -49,6 +49,7 @@
     box-sizing: border-box;
     padding: 10px;
     margin-top: 15px;
+    font-weight: bold;
 }
 .question-input {
     width: 100%;
@@ -76,4 +77,17 @@
     display: inline-block;
     vertical-align: middle;
     margin: 0 10px;
+}
+
+.share-text {
+    color: #2a82f2;
+font-size: 16px;
+font-weight: bold;
+margin: 10px;
+}
+.share-icons {
+    margin: 10px;
+}
+.share-icons > img {
+    margin-right: 5px;
 }

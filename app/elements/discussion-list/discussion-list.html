@@ -1,0 +1,25 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="discussion-list" attributes="discussions">
+  <template>
+    <core-menu>
+    <template repeat="{{d, i in discussions}}">
+        <paper-item label="{{d.eventID}}">
+            <core-icon class="discussions-go" icon="arrow-forward"></core-icon>
+        </paper-item>
+    </template>
+    </core-menu>
+  </template>
+  <script>
+    Polymer('discussion-list', {
+      // initialize the element's model
+      ready: function() {
+        this.discussions = [];
+      },
+      updateModel: function(d) {
+        console.log(d);
+        this.discussions = d;
+      }
+    });
+  </script>
+</polymer-element>

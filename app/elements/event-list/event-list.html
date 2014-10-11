@@ -1,11 +1,11 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<polymer-element name="event-list">
+<polymer-element name="event-list" attributes="events">
     <template>
         <core-menu>
-            <template repeat="{{d, i in events}}">
-                <paper-item label="{{d.eventID}}">
-                    <core-icon class="events-go" icon="arrow-forward"></core-icon>
+            <template repeat="{{ev, i in events}}">
+                <paper-item label="{{ev.title}}" on-click="{{openEvent}}">
+                    <core-icon class="events-go"></core-icon>
                 </paper-item>
             </template>
         </core-menu>
@@ -16,9 +16,9 @@
         ready: function() {
             this.events = [];
         },
-        updateModel: function(d) {
-            console.log(d);
-            this.events = d;
+        openEvent: function(e) {
+            var ev = e.target.templateInstance.model.ev;
+            FollowUp.openQuestionList(ev.eventID);
         }
     });
     </script>

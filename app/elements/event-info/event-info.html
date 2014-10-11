@@ -10,7 +10,7 @@
         <div id="event-page">
             <div class="user-header">
                 <div class="user-name">{{user.firstName}} {{user.lastName}}
-                    <div class="event-post-date">posted on {{event.date}}</div>
+                    <div class="event-post-date">posted on {{eventDate}}</div>
                 </div>
             </div>
             <div class="event-info">
@@ -49,6 +49,7 @@
         },
         eventResponseChanged: function() {
             this.event = this.eventResponse;
+            this.eventDate = new Date(+this.event.eventDate);
         },
         build: function(userID, eventID) {
             if(userID && eventID) {

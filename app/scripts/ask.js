@@ -1,7 +1,6 @@
 (function(document) {
     'use strict';
-    var eventInfo = document.querySelector('event-info');
-    // var ajax = document.querySelector('core-ajax');
+    var pages = document.querySelector('core-pages');
 
     var user = {
         "userID": "18",
@@ -18,20 +17,16 @@
     };
 
     document.addEventListener('polymer-ready', function() {
-
-        // ajax.addEventListener('core-response', function(e) {
-        //     events.updateModel(e.detail.response.events);
-        // });
-
-        // ajax.go();
-        // eventInfo.updateModel({
-        //     user: user,
-        //     event: eventData
-        // });
-        // eventInfo.build(66);
-
         console.log('Polymer is ready to rock!');
     });
+
+    window.FollowUp = {};
+
+    FollowUp.changePage = function(pageID) {
+        pages.selected = pageID;
+        console.log('page changed')
+    };
+    
     // document.querySelector('#new-event-button').addEventListener('click', function(e) {
     //     pages.selected = 1;
     // });

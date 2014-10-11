@@ -33,16 +33,8 @@
     Polymer('event-info', {
         // initialize the element's model
         ready: function() {
-            // this.ajaxUser = document.querySelector('#ajax-user');
-            // this.ajaxUser.addEventListener('core-response', function(e) {
-            //     this.user = e.detail.response.user;
-            // });
-            // this.ajaxEvent = document.querySelector('#ajax-event');
-            // this.ajaxEvent.addEventListener('core-response', function(e) {
-            //     this.event = e.detail.response.event;
-            // });
             var vars = this.getUrlVars();
-            if(vars.eventID) {
+            if (vars.eventID) {
                 this.build(vars.eventID);
             }
         },
@@ -76,6 +68,7 @@
         submitQuestion: function() {
             if (this.questionText.length > 0) {
                 console.log('submitting question: ' + this.questionText);
+                FollowUp.changePage(1);
             }
         },
         updateModel: function(model) {

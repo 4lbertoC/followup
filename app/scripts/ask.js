@@ -24,7 +24,7 @@
     window.FollowUp = {};
 
     FollowUp.onQuestionSubmit = function(questionID) {
-        pages.selected = 1;
+        pages.selected = 2;
         questionSubmitted.questionID = questionID;
     };
     

@@ -33,20 +33,28 @@
 </head>
 
 <body unresolved>
-    <core-toolbar class="toolbar">
-        <img src="../images/logo.png">
-    </core-toolbar>
-    <core-pages>
-        <div id="event-info">
-            <event-info></event-info>
-        </div>
-        <div id="new-event-page">
-            <question-submitted></question-submitted>
-        </div>
-        <div id="selected-event-page">
-            Selected event
-        </div>
-    </core-pages>
+    <core-scaffold>
+        <core-header-panel navigation flex mode="seamed">
+            <core-toolbar class="toolbar">Username</core-toolbar>
+            <core-menu theme="core-light-theme">
+                <core-item label="Profile"></core-item>
+                <core-item label="My Questions (5)"></core-item>
+                <core-item label="Logout"></core-item>
+            </core-menu>
+        </core-header-panel>
+        <div tool class="toolbar"><img src="../images/logo.png"></div>
+        <core-pages>
+            <div id="event-info">
+                <event-info></event-info>
+            </div>
+            <div id="new-event-page">
+                <question-submitted></question-submitted>
+            </div>
+            <div id="selected-event-page">
+                Selected event
+            </div>
+        </core-pages>
+    </core-scaffold>
     <!-- build:js scripts/ask.js -->
     <script src="../scripts/ask.js"></script>
     <!-- endbuild-->

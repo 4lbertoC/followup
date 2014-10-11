@@ -1,6 +1,7 @@
 (function(document) {
     'use strict';
     var pages = document.querySelector('core-pages');
+    var questionSubmitted = document.querySelector('question-submitted');
 
     var user = {
         "userID": "18",
@@ -22,9 +23,9 @@
 
     window.FollowUp = {};
 
-    FollowUp.changePage = function(pageID) {
-        pages.selected = pageID;
-        console.log('page changed')
+    FollowUp.onQuestionSubmit = function(questionID) {
+        pages.selected = 1;
+        questionSubmitted.questionID = questionID;
     };
     
     // document.querySelector('#new-event-button').addEventListener('click', function(e) {

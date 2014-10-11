@@ -7,22 +7,21 @@
     right: 0;
     top: 12px;
 }
-.raise-a-question {
-    height: 45px;
-    background: #5a616a;
-}
 .user-header {
     background: #d0e3fc;
     height: 70px;
     color: #5a616a;
+    padding: 10px;
+    box-sizing: border-box;
 }
 .user-name {
     font-size: 20px;
-    padding: 15px;
+    display: inline-block;
+    vertical-align: middle;
 }
 .event-post-date {
     font-size: 11px;
-    padding-top: 10px;
+    padding: 10px;
 }
 .event-info {
     padding: 15px;
@@ -35,12 +34,13 @@
 .event-text: {
     font-size: 15px;
 }
-.raise-a-question {
+.you-asked-for {
     font-weight: bold;
     font-size: 20px;
     color: white;
     padding: 10px;
     height: 25px;
+    background: #00a44b;
     background-image: url(../../images/FU_icon.png);
     background-repeat: no-repeat;
     background-position: right 20px center;
@@ -70,4 +70,10 @@
     width: 100%;
     max-width: 290px;
     border-radius: 2px;
+}
+
+.user-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
 }

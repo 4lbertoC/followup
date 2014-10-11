@@ -1,11 +1,12 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 
-<polymer-element name="event-info" attributes="userID eventID">
+<polymer-element name="question-submitted" attributes="userID eventID">
     <template>
-        <link rel="stylesheet" href="event-info.css">
+        <link rel="stylesheet" href="question-submitted.css">
 
-        <core-ajax id="ajax-user" auto with-credentials="true" url="{{userUrl}}" response="{{userResponse}}" handleAs="json"></core-ajax>
-        <core-ajax id="ajax-event" auto with-credentials="true" url="{{eventUrl}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
+        <core-ajax id="ajax-user" auto with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/{{userID}}" response="{{userResponse}}" handleAs="json"></core-ajax>
+        <core-ajax id="ajax-event" auto with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/{{eventID}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
+        <core-ajax id="ajax-question" auto with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/{{eventID}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
 
         <div id="event-page">
             <div class="user-header">
@@ -40,21 +41,16 @@
             // this.ajaxEvent.addEventListener('core-response', function(e) {
             //     this.event = e.detail.response.event;
             // });
-
         },
-        userUrl: '',
-        eventUrl: '',
-        userResponseChanged: function() {
-            this.user = this.userResponse;
+        userResponseChanged: function(e) {
+            // if (e) this.user = e.detail.response.user;
         },
-        eventResponseChanged: function() {
-            this.event = this.eventResponse;
+        eventResponseChanged: function(e) {
+            if (e) this.event = e.detail.response.event;
         },
         build: function(userID, eventID) {
-            if(userID && eventID) {
-                this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + userID;
-                this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + eventID;
-            }
+            this.userID = userID;
+            this.eventID = eventID;
         },
         questionText: '',
         submitQuestion: function() {

@@ -3,7 +3,13 @@
     var eventInfo = document.querySelector('event-info');
     // var ajax = document.querySelector('core-ajax');
 
-    var user = {"userID":"18","password":"hahaha","email":"pippo@example.com", firstName: "Max", lastName: "Mustermann"};
+    var user = {
+        "userID": "18",
+        "password": "hahaha",
+        "email": "pippo@example.com",
+        firstName: "Max",
+        lastName: "Mustermann"
+    };
     var eventData = {
         "eventID": "123",
         "title": "Title of the event",
@@ -18,10 +24,11 @@
         // });
 
         // ajax.go();
-        eventInfo.updateModel({
-            user: user,
-            event: eventData
-        });
+        // eventInfo.updateModel({
+        //     user: user,
+        //     event: eventData
+        // });
+        eventInfo.build(19, 15);
 
         console.log('Polymer is ready to rock!');
     });

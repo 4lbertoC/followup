@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="event-info">
+    <template>
+        <link rel="stylesheet" href="event-info.css">
+        <div id="event-page">
+            <div class="user-header">
+                <div class="user-name">{{user.firstName}} {{user.lastName}}
+                    <div class="event-post-date">posted on {{event.date}}</div>
+                </div>
+            </div>
+            <div class="event-info">
+                <div class="event-title">{{event.title}}</div>
+                <div class="event-text">{{event.description}}</div>
+            </div>
+            <div class="raise-a-question">Raise a question</div>
+            <div class="your-question">
+                <core-input class="question-input" multiline rows="fit" placeholder="Your question here..." value="{{questionText}}"></core-input>
+            </div>
+            <div class="create-new-container">
+                <paper-button class="action-button" id="new-event-button" on-click="{{submitQuestion}}">
+                    Submit
+                </paper-button>
+            </div>
+        </div>
+    </template>
+    <script>
+    Polymer('event-info', {
+        // initialize the element's model
+        ready: function() {
+
+        },
+        questionText: '',
+        submitQuestion:  function() {
+            if(this.questionText.length > 0) {
+                console.log('submitting question: ' + this.questionText);
+            }
+        },
+        updateModel: function(model) {
+            this.user = model.user;
+            this.event = model.event;
+        }
+    });
+    </script>
+</polymer-element>

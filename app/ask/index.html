@@ -1,71 +1,74 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Follow Up – Ask</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css styles/main.css -->
-        <link rel="stylesheet" href="../styles/main.css">
-        <!-- endbuild-->
-        <script src="../bower_components/platform/platform.js"></script>
-        <!-- build:vulcanized elements/elements.vulcanized.html -->
-        <link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
-        <link rel="import" href="../bower_components/core-menu/core-menu.html">
-        <link rel="import" href="../bower_components/core-item/core-item.html">
-        <link rel="import" href="../bower_components/core-input/core-input.html">
-        <link rel="import" href="../bower_components/core-icon/core-icon.html">
-        <link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
-        <link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
-        <link rel="import" href="../bower_components/core-scaffold/core-scaffold.html">
-        <link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
-        <link rel="import" href="../bower_components/paper-item/paper-item.html">
-        <link rel="import" href="../bower_components/paper-button/paper-button.html">
-        <link rel="import" href="../bower_components/core-pages/core-pages.html">
-        <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
-        <link rel="import" href="../elements/discussion-list/discussion-list.html">
-        <!-- endbuild-->
-    </head>
-    <body unresolved>
-        <core-ajax with-credentials="true"
-            url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users"
-            params=''
-            handleAs="json"></core-ajax>
 
-        <core-toolbar class="toolbar">
-            <img src="../images/logo.png">
-        </core-toolbar>
-        <core-pages>
-        <div id="discussion-page">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Follow Up – Ask</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="../styles/main.css">
+    <!-- endbuild-->
+    <script src="../bower_components/platform/platform.js"></script>
+    <!-- build:vulcanized elements/elements.vulcanized.html -->
+    <link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="../bower_components/core-menu/core-menu.html">
+    <link rel="import" href="../bower_components/core-item/core-item.html">
+    <link rel="import" href="../bower_components/core-input/core-input.html">
+    <link rel="import" href="../bower_components/core-icon/core-icon.html">
+    <link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
+    <link rel="import" href="../bower_components/core-scaffold/core-scaffold.html">
+    <link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
+    <link rel="import" href="../bower_components/paper-item/paper-item.html">
+    <link rel="import" href="../bower_components/paper-button/paper-button.html">
+    <link rel="import" href="../bower_components/core-pages/core-pages.html">
+    <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+    <link rel="import" href="../elements/event-info/event-info.html">
+    <link rel="import" href="../elements/event-list/event-list.html">
+    <!-- endbuild-->
+</head>
+
+<body unresolved>
+    <core-ajax with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users" params='' handleAs="json"></core-ajax>
+
+    <core-toolbar class="toolbar">
+        <img src="../images/logo.png">
+    </core-toolbar>
+    <core-pages>
+        <event-info></event-info>
+        <div id="event-page">
             <div class="user-header">
-            	<div class="user-name">Bruce Wayne<div class="discussion-post-date">posted on 11.11.2014</div></div>
+                <div class="user-name">Bruce Wayne
+                    <div class="event-post-date">posted on 11.11.2014</div>
+                </div>
             </div>
-            <div class="discussion-info">
-        <div class="discussion-title">Veggie ipsum stocazzo</div>
-            	<div class="discussion-text">Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
-
-Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</div></div>
+            <div class="event-info">
+                <div class="event-title">Veggie ipsum stocazzo</div>
+                <div class="event-text">Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</div>
+            </div>
             <div class="raise-a-question">Raise a question</div>
             <div class="your-question">
                 <core-input class="question-input" multiline rows="fit" placeholder="Your question here..."></core-input>
-				</div>
+            </div>
             <div class="create-new-container">
-                <paper-button class="action-button" id="new-discussion-button">
-                Submit
+                <paper-button class="action-button" id="new-event-button">
+                    Submit
                 </paper-button>
             </div>
         </div>
-        <div id="new-discussion-page">
-            New discussions
+        <div id="new-event-page">
+            New events
         </div>
-        <div id="selected-discussion-page">
-            Selected discussion
+        <div id="selected-event-page">
+            Selected event
         </div>
-        </core-pages>
-        <!-- build:js scripts/app.js -->
-        <script src="../scripts/ask.js"></script>
-        <!-- endbuild-->
-    </body>
+    </core-pages>
+    <!-- build:js scripts/app.js -->
+    <script src="../scripts/ask.js"></script>
+    <!-- endbuild-->
+</body>
+
 </html>

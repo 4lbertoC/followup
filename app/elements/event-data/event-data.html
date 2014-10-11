@@ -1,0 +1,121 @@
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="polymer-date-picker-trigger" attributes="range eventDate startDate endDate halign opened">
+      <template>
+       <style>
+       .datePicker{
+			border: none;
+			box-sizing: border-box;
+			font-size: 15px;
+			background-color: transparent;
+		}
+       </style>
+        <template if="{{range == null}}">
+          <polymer-date-picker id="datePicker" selectedDate="{{eventDate}}" relatedTarget="{{$.trigger}}" opened="{{opened}}"></polymer-date-picker>
+          <input id="trigger" value="{{eventDate}}" on-click="{{toggle}}" placeholder="When will it be?"  readonly class="datePicker">
+        </template>
+      </template>
+      <script>
+        Polymer('polymer-date-picker-trigger', {
+          toggle: function() {
+              this.$.datePicker.toggle();
+          },
+          open: function() {
+              this.$.datePicker.open();
+          }
+        });
+        
+      </script>
+    </polymer-element>
+    
+<polymer-element name="event-data" attributes="userID">
+    <template>
+        <link rel="stylesheet" href="event-data.css">
+
+        <core-ajax id="ajax-user" auto with-credentials="true" url="{{userUrl}}" response="{{userResponse}}" handleAs="json"></core-ajax>
+       	<core-ajax id="ajax-event" auto with-credentials="true" method="POST" body="{{eventBody}}" url="{{eventUrl}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
+       
+        <div id="event-page">
+            <div class="user-header">
+                <img class="user-icon" src="../../images/user_icon_2.png">
+                <div class="user-name">{{user.firstName}} {{user.lastName}}</div>
+            </div>
+            <div class="event-info">
+                <div class="event-title">Publish a new Event</div>
+            </div>
+            <div class="event-info-new">
+                <div class="event-info-data">
+                	<core-input class="event-title-input" multiline rows="fit" placeholder="Your event here.." value="{{eventTitle}}"></core-input>
+				</div>
+				<div class="event-info-data">
+					 <polymer-date-picker-trigger eventDate="" opened="false"></polymer-date-picker-trigger>
+				</div>
+				<div class="event-info-data description">
+					<core-input class="event-title-description" multiline rows="fit" placeholder="Your description here.." value="{{eventDescription}}"></core-input>
+				</div>
+
+         		
+				</div>
+            <div class="create-new-container">
+                <paper-button class="action-button" id="new-event-button" on-click="{{publishEvent}}">
+                    Publish
+                </paper-button>
+            </div>
+        </div>
+    </template>
+    <script>
+    
+    Polymer('event-data', {
+        // initialize the element's model
+        ready: function() {
+            var vars = this.getUrlVars();
+            if (vars.userID) {
+                this.userID = vars.userID;
+                console(this.userID);
+            }
+        },
+        getUrlVars: function() {
+            var vars = [],
+                hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        },
+        userUrl: '',
+        eventUrl: '',
+        userResponseChanged: function() {
+            this.user = this.userResponse;
+        },
+        eventResponseChanged: function() {
+            this.event = this.eventResponse;
+            this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.event.ownerID + '';
+        },
+        userIDChanged: function() {
+            this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.userID;
+        },
+        eventTitle: '',
+        eventDescription: '',
+        eventDate : '',
+        publishEvent: function() {
+        	console.log(this.eventDate);
+            if (this.eventTitle.length > 0) {
+                console.log('publishing event: ' + this.eventTitle);
+                this.eventBody = JSON.stringify({
+                    event: {
+                        ownerID: this.userID,
+                        title: this.eventTitle,
+                        description: this.eventDescription,
+                        eventDate : new Date(this.eventDate).getTime()
+                    }
+                });
+                console.log(this.eventBody);
+                this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.userID + '/events';
+            }
+        }
+    });
+    </script>
+</polymer-element>

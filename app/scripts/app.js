@@ -16,7 +16,7 @@
         console.log('Polymer is ready to rock!');
     });
     document.querySelector('#new-event-button').addEventListener('click', function(e) {
-        pages.selected = 1;
+        window.open('/publish','_self');
     });
     // wrap document so it plays nice with other libraries
     // http://www.polymer-project.org/platform/shadow-dom.html#wrappers

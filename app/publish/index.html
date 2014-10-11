@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="../App_Icon.ico" />
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="../styles/main.css">
     <!-- endbuild-->
@@ -27,34 +26,30 @@
     <link rel="import" href="../bower_components/paper-button/paper-button.html">
     <link rel="import" href="../bower_components/core-pages/core-pages.html">
     <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
-    <link rel="import" href="../elements/event-info/event-info.html">
+    <link rel="import" href="../bower_components/polymer-date-picker/polymer-date-picker.html">
+    <link rel="import" href="../elements/event-data/event-data.html">
     <link rel="import" href="../elements/event-list/event-list.html">
     <link rel="import" href="../elements/question-submitted/question-submitted.html">
-    <!-- endbuild-->
+      <!-- endbuild-->
 </head>
 
 <body unresolved>
-    <core-scaffold>
-        <core-header-panel navigation flex mode="seamed">
-            <core-toolbar class="toolbar">Username</core-toolbar>
-            <core-menu theme="core-light-theme">
-                <core-item label="Profile"></core-item>
-                <core-item label="My Questions (5)"></core-item>
-                <core-item label="Logout"></core-item>
-            </core-menu>
-        </core-header-panel>
-        <div tool class="toolbar"><img src="../images/logo.png"></div>
-        <core-pages>
-            <div id="event-info">
-                <event-info></event-info>
-            </div>
-            <div id="new-event-page">
-                <question-submitted></question-submitted>
-            </div>
-        </core-pages>
-    </core-scaffold>
-    <!-- build:js scripts/ask.js -->
-    <script src="../scripts/ask.js"></script>
+    <core-toolbar class="toolbar">
+        <img src="../images/logo.png">
+    </core-toolbar>
+    <core-pages>
+        <div id="event-data">
+            <event-data></event-data>
+        </div>
+        <div id="new-event-page">
+            <question-submitted></question-submitted>
+        </div>
+        <div id="selected-event-page">
+            Selected event
+        </div>
+    </core-pages>
+    <!-- build:js scripts/publish.js -->
+    <script src="../scripts/publish.js"></script>
     <!-- endbuild-->
 </body>
 

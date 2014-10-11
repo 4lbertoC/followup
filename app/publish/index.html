@@ -30,24 +30,26 @@
     <link rel="import" href="../elements/event-data/event-data.html">
     <link rel="import" href="../elements/event-list/event-list.html">
     <link rel="import" href="../elements/question-submitted/question-submitted.html">
+   
       <!-- endbuild-->
 </head>
 
 <body unresolved>
-    <core-toolbar class="toolbar">
-        <img src="../images/logo.png">
-    </core-toolbar>
-    <core-pages>
+
+
+	<scaffold-template>
+	
         <div id="event-data">
             <event-data></event-data>
         </div>
         <div id="new-event-page">
-            <question-submitted></question-submitted>
         </div>
         <div id="selected-event-page">
             Selected event
         </div>
-    </core-pages>
+	
+	</scaffold-template>
+
     <!-- build:js scripts/publish.js -->
     <script src="../scripts/publish.js"></script>
     <!-- endbuild-->

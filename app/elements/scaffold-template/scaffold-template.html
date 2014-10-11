@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../../bower_components/core-scaffold/core-scaffold.html">
+
+<polymer-element name='scaffold-template'>
+<template>
+<link rel="stylesheet" href="../../styles/main.css">
+    <core-scaffold>
+        <core-header-panel navigation flex mode="seamed">
+            <core-toolbar class="toolbar">Username</core-toolbar>
+            <core-menu theme="core-light-theme">
+                <core-item label="Profile"></core-item>
+                <core-item label="My Questions (5)"></core-item>
+                <core-item label="Logout"></core-item>
+            </core-menu>
+        </core-header-panel>
+        <div tool class="toolbar"><img src="../../images/logo.png"></div>
+        <core-pages selected="{{pageId}}">
+        	<content></content>
+        </core-pages>
+    </core-scaffold>
+  </template>
+  <script>
+    Polymer('scaffold-template', {
+		setPage:function(pageId){
+			this.pageId=pageId;
+		},
+		pageId:0
+    });
+  </script>
+</polymer-element>
+
+        

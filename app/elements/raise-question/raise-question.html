@@ -1,26 +1,25 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 
-<polymer-element name="question-submitted" attributes="userID eventID questionID">
+<polymer-element name="raise-question" attributes="userID eventID">
     <template>
-        <link rel="stylesheet" href="question-submitted.css">
+        <link rel="stylesheet" href="raise-question.css">
 
         <core-ajax id="ajax-user" auto with-credentials="true" url="{{userUrl}}" response="{{userResponse}}" handleAs="json"></core-ajax>
         <core-ajax id="ajax-event" auto with-credentials="true" url="{{eventUrl}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
-        <core-ajax id="ajax-question" auto with-credentials="true" url="{{questionUrl}}" response="{{questionResponse}}" handleAs="json"></core-ajax>
+        <core-ajax id="ajax-question" auto with-credentials="true" method="POST" body="{{questionBody}}" url="{{questionUrl}}" response="{{questionResponse}}" handleAs="json"></core-ajax>
 
-            <div class="you-asked-for">You asked for...</div>
-            <div class="your-question">
-                {{questionText}}
-            </div>
-            <div class="share-text">Share</div>
-            <div class="share-icons">
-                <img src="../../images/twt_icon.png">
-                <img src="../../images/fb_icon.png">
-                <img src="../../images/mail_icon.png">
-            </div>
+       <div class="raise-a-question">Raise a question</div>
+        <div class="your-question">
+            <core-input class="question-input" multiline rows="fit" placeholder="Your question here..." value="{{questionText}}"></core-input>
+        </div>
+        <div class="create-new-container">
+            <paper-button class="action-button" id="new-event-button" on-click="{{submitQuestion}}">
+                Submit
+            </paper-button>
+        </div>
     </template>
     <script>
-    Polymer('question-submitted', {
+    Polymer('raise-question', {
         // initialize the element's model
         ready: function() {
             var vars = this.getUrlVars();
@@ -50,15 +49,24 @@
             this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.event.ownerID;
         },
         questionResponseChanged: function() {
-            this.questionText = this.questionResponse.question;
+            FollowUp.onQuestionSubmit(this.questionResponse.question.questionID);
         },
         eventIDChanged: function() {
             this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID;
         },
-        questionIDChanged: function() {
-            this.questionUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/questions/' + this.questionID;
-        },
-        questionText: ''
+        questionText: '',
+        submitQuestion: function() {
+            if (this.questionText.length > 0) {
+                console.log('submitting question: ' + this.questionText);
+                this.questionBody = JSON.stringify({
+                    question: {
+                        ownerID: "21",
+                        question: this.questionText
+                    }
+                });
+                this.questionUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID + '/questions';
+            }
+        }
     });
     </script>
 </polymer-element>

@@ -1,6 +1,7 @@
 (function(document) {
     'use strict';
-    var pages = document.querySelector('core-pages');
+    var scaffoldTemplate = document.querySelector('scaffold-template');
+
     var questionSubmitted = document.querySelector('question-submitted');
 
     var user = {
@@ -24,7 +25,7 @@
     window.FollowUp = {};
 
     FollowUp.onQuestionSubmit = function(questionID) {
-        pages.selected = 1;
+    	scaffoldTemplate.setPage(1);
         questionSubmitted.questionID = questionID;
     };
     

@@ -9,12 +9,7 @@
         firstName: "Max",
         lastName: "Mustermann"
     };
-    var eventData = {
-        "eventID": "123",
-        "title": "Title of the event",
-        "description": "Description of the event",
-        "date": Date.now()
-    };
+   
 
     document.addEventListener('polymer-ready', function() {
         console.log('Polymer is ready to rock!');
@@ -23,7 +18,7 @@
     window.FollowUp = {};
 
     FollowUp.onEventPublished = function(eventID) {
-        window.open('/published?eventID='+eventID,'_self');
+        window.open('/published?eventID=?'+eventID,'_self');
     };
     
     // document.querySelector('#new-event-button').addEventListener('click', function(e) {

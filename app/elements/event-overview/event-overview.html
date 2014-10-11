@@ -1,26 +1,25 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 
-<polymer-element name="question-submitted" attributes="userID eventID questionID">
+<polymer-element name="event-overview" attributes="userID eventID">
     <template>
-        <link rel="stylesheet" href="question-submitted.css">
+        <link rel="stylesheet" href="event-overview.css">
 
         <core-ajax id="ajax-user" auto with-credentials="true" url="{{userUrl}}" response="{{userResponse}}" handleAs="json"></core-ajax>
         <core-ajax id="ajax-event" auto with-credentials="true" url="{{eventUrl}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
-        <core-ajax id="ajax-question" auto with-credentials="true" url="{{questionUrl}}" response="{{questionResponse}}" handleAs="json"></core-ajax>
-
-            <div class="you-asked-for">You asked for...</div>
-            <div class="your-question">
-                {{questionText}}
-            </div>
-            <div class="share-text">Share</div>
-            <div class="share-icons">
-                <img src="../../images/twt_icon.png">
-                <img src="../../images/fb_icon.png">
-                <img src="../../images/mail_icon.png">
-            </div>
+	        <div id="event-page">
+	            <div class="user-header">
+	                <img class="user-icon" src="../../images/user_icon_2.png">
+	                <div class="user-name">{{user.firstName}} {{user.lastName}}</div>
+	                <div class="event-post-date">published on {{eventDate}}</div>
+	            </div>
+	            <div class="event-info">
+	                <div class="event-title">{{event.title}}</div>
+	                <div class="event-text">{{event.description}}</div>
+	            </div>
+	        </div>
     </template>
     <script>
-    Polymer('question-submitted', {
+    Polymer('event-overview', {
         // initialize the element's model
         ready: function() {
             var vars = this.getUrlVars();
@@ -49,16 +48,9 @@
             this.eventDate = new Date(+this.event.eventDate);
             this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.event.ownerID;
         },
-        questionResponseChanged: function() {
-            this.questionText = this.questionResponse.question;
-        },
         eventIDChanged: function() {
             this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID;
         },
-        questionIDChanged: function() {
-            this.questionUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/questions/' + this.questionID;
-        },
-        questionText: ''
     });
     </script>
 </polymer-element>

@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 
-<polymer-element name="polymer-date-picker-trigger" attributes="range eventDate startDate endDate halign opened">
+<polymer-element name="polymer-date-picker-trigger" attributes="range selectedDate startDate endDate halign opened">
       <template>
        <style>
        .datePicker{
@@ -11,8 +11,8 @@
 		}
        </style>
         <template if="{{range == null}}">
-          <polymer-date-picker id="datePicker" selectedDate="{{eventDate}}" relatedTarget="{{$.trigger}}" opened="{{opened}}"></polymer-date-picker>
-          <input id="trigger" value="{{eventDate}}" on-click="{{toggle}}" placeholder="When will it be?"  readonly class="datePicker">
+          <polymer-date-picker id="datePicker" selectedDate="{{selectedDate}}" relatedTarget="{{$.trigger}}" opened="{{opened}}"></polymer-date-picker>
+          <input id="trigger" value="{{selectedDate}}" on-click="{{toggle}}" placeholder="When will it be?"  readonly class="datePicker">
         </template>
       </template>
       <script>
@@ -48,7 +48,7 @@
                 	<core-input class="event-title-input" multiline rows="fit" placeholder="Your event here.." value="{{eventTitle}}"></core-input>
 				</div>
 				<div class="event-info-data">
-					 <polymer-date-picker-trigger eventDate="" opened="false"></polymer-date-picker-trigger>
+					 <polymer-date-picker-trigger selectedDate="" opened="false"></polymer-date-picker-trigger>
 				</div>
 				<div class="event-info-data description">
 					<core-input class="event-title-description" multiline rows="fit" placeholder="Your description here.." value="{{eventDescription}}"></core-input>
@@ -92,16 +92,17 @@
         },
         eventResponseChanged: function() {
             this.event = this.eventResponse;
+            console.log(this.eventResponse)
             this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.event.ownerID + '';
+            FollowUp.onEventPublished(this.event.eventID);
         },
         userIDChanged: function() {
             this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.userID;
         },
         eventTitle: '',
         eventDescription: '',
-        eventDate : '',
+        selectedDate : '',
         publishEvent: function() {
-        	console.log(this.eventDate);
             if (this.eventTitle.length > 0) {
                 console.log('publishing event: ' + this.eventTitle);
                 this.eventBody = JSON.stringify({
@@ -109,10 +110,9 @@
                         ownerID: this.userID,
                         title: this.eventTitle,
                         description: this.eventDescription,
-                        eventDate : new Date(this.eventDate).getTime()
+                        eventDate : new Date().getTime()
                     }
                 });
-                console.log(this.eventBody);
                 this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.userID + '/events';
             }
         }

@@ -28,7 +28,7 @@
         //     user: user,
         //     event: eventData
         // });
-        eventInfo.build(20, 66);
+        // eventInfo.build(66);
 
         console.log('Polymer is ready to rock!');
     });

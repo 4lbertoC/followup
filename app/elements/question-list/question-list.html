@@ -26,7 +26,7 @@
                     <div class="question-element">
                         <core-ajax id="ajax-questionUser" auto with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/{{q.ownerID}}" response="{{questionUserResponse}}" handleAs="json"></core-ajax>
                         <div class="question-user">
-                            <img src="/images/user_icon.png">
+                            <img src="{{baseUrl}}/images/user_icon.png">
                             <div class="question-user-container">
                                 <div class="question-user-name">{{users[q.ownerID].firstName}} {{users[q.ownerID].lastName}}</div>
                                 <div class="question-date">{{getDate(q.creationDate)}}</div>
@@ -36,7 +36,7 @@
                         <template if="{{q.answer}}">
                             <div class="answer-container">
                                 <div class="answer-user-container">
-                                    <img src="/images/user_icon_2.png">
+                                    <img src="{{baseUrl}}/images/user_icon_2.png">
                                     <div class="answer-user">
                                         <div class="answer-user-name">{{user.firstName}} {{user.lastName}}</div>
                                         <div class="answer-date">{{getDate(q.answerDate)}}</div>
@@ -69,7 +69,7 @@
     Polymer('question-list', {
         // initialize the element's model
         ready: function() {
-
+            this.baseUrl = document.URL;
         },
         userUrl: '',
         eventUrl: '',

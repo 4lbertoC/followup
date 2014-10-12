@@ -1,0 +1,89 @@
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../../bower_components/core-input/core-input.html">
+
+<polymer-element name="question-list" attributes="eventID">
+    <template>
+        <link rel="stylesheet" href="question-list.css">
+
+        <core-ajax id="ajax-user" auto with-credentials="true" url="{{userUrl}}" response="{{userResponse}}" handleAs="json"></core-ajax>
+        <core-ajax id="ajax-event" auto with-credentials="true" url="{{eventUrl}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
+        <core-ajax id="ajax-question" auto with-credentials="true" url="{{questionUrl}}" response="{{questionResponse}}" handleAs="json"></core-ajax>
+
+
+        <div id="event-page">
+            <div class="user-header">
+                <img class="user-icon" src="../../images/user_icon_2.png">
+                <div class="user-name">{{user.firstName}} {{user.lastName}}</div>
+                <div class="event-post-date">published on {{eventDate}}</div>
+            </div>
+            <div class="event-info">
+                <div class="event-title">{{event.title}}</div>
+                <div class="event-text">{{event.description}}</div>
+            </div>
+            <div class="raised-questions">Raised Questions</div>
+            <div class="question-list-container">
+                <template repeat="{{q, i in questions}}">
+                    <div class="question-element">
+                        <core-ajax id="ajax-questionUser" auto with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/{{q.ownerID}}" response="{{questionUserResponse}}" handleAs="json"></core-ajax>
+                        <div class="question-user">
+                            <img src="/images/user_icon.png">{{users[q.ownerID].firstName}} {{users[q.ownerID].lastName}}</div>
+                        <div class="question-text">{{q.question}}</div>
+                        <template if="{{q.answer}}">
+                            <div class="answer-text">{{q.answer}}</div>
+                        </template>
+                        <template if="{{!q.answer}}">
+                            <div class="reply-button" on-click="{{onReplyButtonClick}}">
+                                <core-icon icon="reply"></core-icon>
+                                <div class="reply-text">Reply</div>
+                            </div>
+                            <div class="answer-form-container" hidden>
+                                <div class="answer-input-container">
+                                    <core-input class="answer-input" multiline rows="fit" placeholder="Your answer here..." value="{{answerText}}"></core-input>
+                                </div>
+                                <div class="answer-button-container">
+                                    <paper-button class="action-button answer-button" id="new-answer-button" on-click="{{submitAnswer}}">
+                                        Submit
+                                    </paper-button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </template>
+    <script>
+    Polymer('question-list', {
+        // initialize the element's model
+        ready: function() {
+
+        },
+        userUrl: '',
+        eventUrl: '',
+        userResponseChanged: function() {
+            this.user = this.userResponse;
+        },
+        eventResponseChanged: function() {
+            this.event = this.eventResponse;
+            this.eventDate = this.event.eventDate && new Date(+this.event.eventDate);
+            this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.event.ownerID;
+        },
+        questionResponseChanged: function() {
+            this.questions = this.questionResponse.questions;
+        },
+        questionUserResponseChanged: function() {
+            this.users[this.questionUserResponse.userID] = this.questionUserResponse;
+        },
+        users: [],
+        eventIDChanged: function() {
+            this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID;
+            this.questionUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID + '/questions';
+        },
+        questionText: '',
+        onReplyButtonClick: function(e, d, sender) {
+            sender.hidden = true;
+            sender.nextElementSibling.hidden = false;
+        }
+    });
+    </script>
+</polymer-element>

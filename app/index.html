@@ -28,11 +28,12 @@
     <link rel="import" href="bower_components/core-ajax/core-ajax.html">
     <link rel="import" href="elements/event-list/event-list.html">
     <link rel="import" href="elements/event-info/event-info.html">
+    <link rel="import" href="elements/question-list/question-list.html">
     <!-- endbuild-->
 </head>
 
 <body unresolved>
-    <core-ajax with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/17/events" params='' handleAs="json"></core-ajax>
+    <core-ajax with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/21/events" handleAs="json"></core-ajax>
 
     <core-toolbar style="background: #2a82f2; height: 85px; padding: 10px;">
         <img src="images/logo.png">
@@ -50,7 +51,7 @@
             New events
         </div>
         <div id="selected-event-page">
-            Selected event
+            <question-list></question-list>
         </div>
     </core-pages>
     <!-- build:js scripts/app.js -->

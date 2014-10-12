@@ -1,0 +1,18 @@
+
+.user-header {
+    background: #d0e3fc;
+    height: 50px;
+    color: #5a616a;
+    padding: 15px;
+    box-sizing: border-box;
+	text-align: left;
+}
+.user-name {
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+paper-item {
+	border-bottom: 1px solid #d0e3fc;
+}

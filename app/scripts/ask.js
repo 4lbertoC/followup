@@ -4,20 +4,6 @@
 
     var questionSubmitted = document.querySelector('question-submitted');
 
-    var user = {
-        "userID": "18",
-        "password": "hahaha",
-        "email": "pippo@example.com",
-        firstName: "Max",
-        lastName: "Mustermann"
-    };
-    var eventData = {
-        "eventID": "123",
-        "title": "Title of the event",
-        "description": "Description of the event",
-        "date": Date.now()
-    };
-
     document.addEventListener('polymer-ready', function() {
         console.log('Polymer is ready to rock!');
     });

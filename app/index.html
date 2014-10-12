@@ -29,16 +29,14 @@
     <link rel="import" href="elements/event-list/event-list.html">
     <link rel="import" href="elements/event-info/event-info.html">
     <link rel="import" href="elements/question-list/question-list.html">
+    <link rel="import" href="elements/scaffold-template/scaffold-template.html">
     <!-- endbuild-->
 </head>
 
 <body unresolved>
     <core-ajax with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/22/events" handleAs="json"></core-ajax>
 
-    <core-toolbar style="background: #2a82f2; height: 85px; padding: 10px;">
-        <img src="images/logo.png">
-    </core-toolbar>
-    <core-pages>
+    <scaffold-template>
         <div id="event-list-page">
             <event-list id="events"></event-list>
             <div class="create-new-container">
@@ -53,7 +51,7 @@
         <div id="selected-event-page">
             <question-list></question-list>
         </div>
-    </core-pages>
+    </scaffold-template>
     <!-- build:js scripts/app.js -->
     <script src="scripts/app.js"></script>
     <!-- endbuild-->

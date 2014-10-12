@@ -15,7 +15,7 @@
 
     });
     document.querySelector('#new-event-button').addEventListener('click', function(e) {
-        window.open('/publish','_self');
+        window.open('publish/?userID=21','_self');
     });
 
     window.FollowUp = {};

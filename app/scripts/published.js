@@ -2,14 +2,8 @@
     'use strict';
     var pages = document.querySelector('core-pages');
 
-    var user = {
-        "userID": "18",
-        "password": "hahaha",
-        "email": "pippo@example.com",
-        firstName: "Max",
-        lastName: "Mustermann"
-    };
-   
+    var baseUrl = document.URL;
+    var path = baseUrl.match(/(.*)\/published/)[1];
 
     document.addEventListener('polymer-ready', function() {
         console.log('Polymer is ready to rock!');
@@ -18,7 +12,7 @@
     window.FollowUp = {};
 
     FollowUp.onEventPublished = function(eventID) {
-        window.open('/published?eventID=?'+eventID,'_self');
+        window.open(path + '/published?eventID=?'+eventID,'_self');
     };
     
     // document.querySelector('#new-event-button').addEventListener('click', function(e) {

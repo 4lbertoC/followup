@@ -52,7 +52,7 @@ paper-button.colored {
 			        	<img class="social" src="../../images/mail_icon.png"/>
 			        </div>
 		        </div>
-		        <div class="back-discussions" onclick="window.open('/ask/?userID=21','_self');">
+		        <div class="back-discussions" on-click="{{backToDiscussions}}">
 		     		<paper-button class="colored" id="new-event-button" >
 	                    		Back to all discussions
 	                </paper-button>
@@ -91,6 +91,12 @@ paper-button.colored {
         eventIDChanged: function() {
             this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID;
         },
+        backToDiscussions: function() {
+        	var baseUrl = document.URL;
+    	var path = baseUrl.match(/(.*)\/published/)[1];
+
+        	window.open(path + '/?userID=21','_self');
+        }
     });
     </script>
 </polymer-element>

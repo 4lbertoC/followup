@@ -2,6 +2,10 @@
 
 <polymer-element name="event-list" attributes="events">
     <template>
+        <link rel="stylesheet" href="event-list.css">
+        <div class="user-header">
+            <div class="user-name">My events</div>
+        </div>
         <core-menu>
             <template repeat="{{ev, i in events}}">
                 <paper-item label="{{ev.title}}" on-click="{{openEvent}}">

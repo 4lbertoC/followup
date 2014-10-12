@@ -8,7 +8,7 @@
         <core-ajax id="ajax-user" auto with-credentials="true" url="{{userUrl}}" response="{{userResponse}}" handleAs="json"></core-ajax>
         <core-ajax id="ajax-event" auto with-credentials="true" url="{{eventUrl}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
         <core-ajax id="ajax-question" auto with-credentials="true" url="{{questionUrl}}" response="{{questionResponse}}" handleAs="json"></core-ajax>
-
+        <core-ajax id="ajax-answer" auto with-credentials="true" method="POST" body="{{answerBody}}" url="{{answerUrl}}" response="{{answerResponse}}" handleAs="json"></core-ajax>
 
         <div id="event-page">
             <div class="user-header">
@@ -26,10 +26,23 @@
                     <div class="question-element">
                         <core-ajax id="ajax-questionUser" auto with-credentials="true" url="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/{{q.ownerID}}" response="{{questionUserResponse}}" handleAs="json"></core-ajax>
                         <div class="question-user">
-                            <img src="/images/user_icon.png">{{users[q.ownerID].firstName}} {{users[q.ownerID].lastName}}</div>
+                            <img src="/images/user_icon.png">
+                            <div class="question-user-container">
+                                <div class="question-user-name">{{users[q.ownerID].firstName}} {{users[q.ownerID].lastName}}</div>
+                                <div class="question-date">{{getDate(q.creationDate)}}</div>
+                            </div>
+                        </div>
                         <div class="question-text">{{q.question}}</div>
                         <template if="{{q.answer}}">
-                            <div class="answer-text">{{q.answer}}</div>
+                            <div class="answer-container">
+                                <div class="answer-user-container">
+                                    <img src="/images/user_icon_2.png">
+                                    <div class="answer-user">
+                                        <div class="answer-user-name">{{user.firstName}} {{user.lastName}}</div>
+                                        <div class="answer-date">{{getDate(q.answerDate)}}</div>
+                                    </div>
+                                    <div class="answer-text">{{q.answer}}</div>
+                                </div>
                         </template>
                         <template if="{{!q.answer}}">
                             <div class="reply-button" on-click="{{onReplyButtonClick}}">
@@ -38,19 +51,19 @@
                             </div>
                             <div class="answer-form-container" hidden>
                                 <div class="answer-input-container">
-                                    <core-input class="answer-input" multiline rows="fit" placeholder="Your answer here..." value="{{answerText}}"></core-input>
+                                    <core-input class="answer-input" multiline rows="fit" placeholder="Your answer here..." value="{{answers[q.questionID]}}"></core-input>
                                 </div>
                                 <div class="answer-button-container">
-                                    <paper-button class="action-button answer-button" id="new-answer-button" on-click="{{submitAnswer}}">
+                                    <paper-button class="action-button answer-button" id="new-answer-button" data-questionid="{{q.questionID}}" on-click="{{submitAnswer}}">
                                         Submit
                                     </paper-button>
                                 </div>
                             </div>
                         </template>
-                    </div>
+                        </div>
                 </template>
+                </div>
             </div>
-        </div>
     </template>
     <script>
     Polymer('question-list', {
@@ -75,6 +88,8 @@
             this.users[this.questionUserResponse.userID] = this.questionUserResponse;
         },
         users: [],
+        dates: [],
+        answers: [],
         eventIDChanged: function() {
             this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID;
             this.questionUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID + '/questions';
@@ -83,6 +98,18 @@
         onReplyButtonClick: function(e, d, sender) {
             sender.hidden = true;
             sender.nextElementSibling.hidden = false;
+        },
+        submitAnswer: function(e, d, sender) {
+            var questionID = sender.attributes['data-questionid'].value;
+            this.answerBody = JSON.stringify({
+                answer: {
+                    answer: this.answers[questionID]
+                }
+            });
+            this.answerUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/questions/' + questionID + '/answer';
+        },
+        getDate: function(timestamp) {
+            return new Date(+timestamp);
         }
     });
     </script>

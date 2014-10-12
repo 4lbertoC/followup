@@ -87,10 +87,24 @@
     margin-bottom: 20px;
 }
 
-.question-user > img {
-    vertical-align: middle;
+.question-user > img, .answer-user > img {
     margin-right: 5px;
     width: 35px;
+}
+
+.answer-user > img {
+    width: 21px;
+}
+
+.answer-text {
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.answer-container {
+    background: #d0e3fc;
+    padding: 10px 15px;
+    margin-bottom: 5px;
 }
 
 .question-text {
@@ -134,4 +148,18 @@
 .question-element /deep/ .answer-button {
     width: 100px;
     margin-bottom: 5px;
+}
+
+.question-element /deep/ .question-user-container,
+.question-element /deep/ .answer-user {
+    display: inline-block;
+}
+
+.question-element /deep/ .answer-user-container img {
+    margin: 3px;
+}
+
+.question-element /deep/ .question-date,
+.question-element /deep/ .answer-date {
+    font-size: 11px;
 }

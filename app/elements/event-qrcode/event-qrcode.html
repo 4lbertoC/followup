@@ -1,0 +1,96 @@
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="event-qrcode" attributes="userID eventID">
+    <template>
+        <link rel="stylesheet" href="../../styles/main.css">
+<style>
+paper-button.colored {
+      color: white;
+      background: #5a616a;
+    }
+</style>
+        <core-ajax id="ajax-user" auto with-credentials="true" url="{{userUrl}}" response="{{userResponse}}" handleAs="json"></core-ajax>
+        <core-ajax id="ajax-event" auto with-credentials="true" url="{{eventUrl}}" response="{{eventResponse}}" handleAs="json"></core-ajax>
+	       <div class="event-container">
+	       
+	       	    <div class="event-header">
+	                <div class="event-description">{{event.description}}</div>
+	                <div class="event-creator">by {{user.firstName}} {{user.lastName}}</div>
+	            </div>
+	            
+	            <div class="followup-icon">
+	            	<img src="../../images/app_icon.png"/>
+	            </div>
+	            
+	            <div class="followup-url">
+	            	<div>on &nbsp;</div> <div class="blue">followupapp.com/beta</div>
+	            </div>
+	       
+		        <div id="qrcode-container">
+		                <img class="qrcode" src="http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/images/qrCodes/{{event.eventID}}.png">
+		        </div>
+		        
+
+		        
+		        
+	        
+	        </div>
+	        <div class="share">
+		       	 	Share & Invite
+		    </div>
+	        <div class="socials">
+			        <div class="left">
+			        	<div class="flyer">
+	                		<paper-button class="action-button" id="new-event-button" on-click="{{publishEvent}}">
+	                    		Print a flyer
+	                		</paper-button>
+                		</div>
+			        </div>
+			        <div class="right">
+			        	<img class="social" src="../../images/twt_icon.png"/>
+			        	<img class="social" src="../../images/fb_icon.png"/>
+			        	<img class="social" src="../../images/mail_icon.png"/>
+			        </div>
+		        </div>
+		        <div class="back-discussions" onclick="window.open('/ask/?userID=21','_self');">
+		     		<paper-button class="colored" id="new-event-button" >
+	                    		Back to all discussions
+	                </paper-button>
+	            </div>
+    </template>
+    <script>
+    Polymer('event-qrcode', {
+        // initialize the element's model
+        ready: function() {
+            var vars = this.getUrlVars();
+            if (vars.eventID) {
+                this.eventID = vars.eventID;
+            }
+        },
+        getUrlVars: function() {
+            var vars = [],
+                hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        },
+        userUrl: '',
+        eventUrl: '',
+        userResponseChanged: function() {
+            this.user = this.userResponse;
+        },
+        eventResponseChanged: function() {
+            this.event = this.eventResponse;
+            this.eventDate = new Date(+this.event.eventDate);
+            this.userUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/users/' + this.event.ownerID;
+        },
+        eventIDChanged: function() {
+            this.eventUrl = 'http://ec2-54-69-236-51.us-west-2.compute.amazonaws.com/www/api/events/' + this.eventID;
+        },
+    });
+    </script>
+</polymer-element>

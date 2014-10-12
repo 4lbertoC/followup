@@ -1,8 +1,8 @@
 body {
     margin: 0;
-    background: #fafafa;
     font-family: "sans-serif", Helvetica, Arial, sans-serif;
     color: #333;
+    background: white;
 }
 .toolbar {
     background: #2a82f2;
@@ -100,4 +100,102 @@ core-header-panel {
     width: 100%;
     max-width: 290px;
     border-radius: 2px;
+}
+
+#qrcode-container{
+	clear:both;
+	margin: 0;
+	text-align: center;
+	background: white;
+	border:10px solid #d0e3fc;
+}
+.qrcode{
+	max-width: 300px;
+}
+
+.event-container{
+	background: #d0e3fc;
+	border:20px solid white;
+}
+.event-header{
+	
+}
+.event-description{
+	font-size: 20px;
+    color: #2a82f2;
+    margin-bottom: 10px;
+    margin-top:10px;
+	padding: 0px 0px 0px 15px;
+}
+.event-creator{
+	font-size: 20px;
+    padding: 0px 0px 0px 15px;
+}
+
+.followup-icon{
+	float:right;
+	padding-right: 10px;
+}
+.followup-url{
+	clear:both;
+	text-align:right;
+	float:right;
+	font-size: 10pt;
+}
+
+.followup-url div{
+	float:left;
+}
+.followup-url div.blue{
+	text-align:left;
+	float:left;
+	color:#2a82f2;
+	padding-right: 10px;
+}
+.share{
+	color:#2a82f2;
+	margin: 0;
+	text-align: center;
+	background-color:white;
+	font-size: 13pt;
+	padding-bottom: 15px;
+}
+.event-data{
+	background: white;
+	height: 100%;
+}
+.socials{
+	background-color:white;
+	float: left;
+	width: 100%;
+	padding-top:0px;
+	background:white;
+	clear:both;
+	padding-right:20px;
+	padding-left:20px;
+}
+.socials .left{
+	float:left;
+	width: 40%;
+}
+.socials .right{
+	float:left;
+	width: 50%;
+}
+
+.social{
+	float:right;
+	padding-left:10px;
+}
+
+.back-discussions{
+	clear:both;
+	background: white;
+	padding-top:20px;
+	margin: 0;
+	text-align: center;
+}
+scaffold-template /deep/ #mainContainer{
+	
+	
 }
